@@ -1,0 +1,32 @@
+import { ConfigParams, IOpenable } from 'pip-services3-commons-nodex';
+import { IConfigurable } from 'pip-services3-commons-nodex';
+import { IReferences } from 'pip-services3-commons-nodex';
+import { IReferenceable } from 'pip-services3-commons-nodex';
+import { FilterParams } from 'pip-services3-commons-nodex';
+import { PagingParams } from 'pip-services3-commons-nodex';
+import { DataPage } from 'pip-services3-commons-nodex';
+import { CommandSet } from 'pip-services3-commons-nodex';
+import { ICommandable } from 'pip-services3-commons-nodex';
+import { CounterV1 } from '../data/version1/CounterV1';
+import { IPerfMonController } from './IPerfMonController';
+export declare class PerfMonController implements IPerfMonController, ICommandable, IConfigurable, IReferenceable, IOpenable {
+    private _dependencyResolver;
+    private _persistence;
+    private _commandSet;
+    private _expireCleanupTimeout;
+    private _expireTimeout;
+    private _interval;
+    constructor();
+    private asyncInterval;
+    getCommandSet(): CommandSet;
+    configure(config: ConfigParams): void;
+    setReferences(references: IReferences): void;
+    isOpen(): boolean;
+    open(correlationId: string): Promise<void>;
+    close(correlationId: string): Promise<void>;
+    writeCounter(correlationId: string, counter: CounterV1): Promise<CounterV1>;
+    writeCounters(correlationId: string, counters: CounterV1[]): Promise<void>;
+    readCounters(correlationId: string, filter: FilterParams, paging: PagingParams): Promise<DataPage<CounterV1>>;
+    clear(correlationId: string): Promise<void>;
+    deleteExpired(correlationId: string): Promise<void>;
+}
