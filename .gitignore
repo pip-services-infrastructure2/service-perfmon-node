@@ -4,5 +4,6 @@
 /data/counters.test.json
 /data/counters.json
 /obj/test
+/package-lock.json
 /docker/id_rsa*
-package-lock.json
+/docker/.npmrc
