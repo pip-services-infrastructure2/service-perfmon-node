@@ -10,7 +10,7 @@ import { CounterType } from 'pip-services3-components-nodex';
 import { CounterV1 } from '../../../src/data/version1/CounterV1';
 import { PerfMonMemoryPersistence } from '../../../src/persistence/PerfMonMemoryPersistence';
 import { PerfMonController } from '../../../src/logic/PerfMonController';
-import { PerfMonHttpServiceV1 } from '../../../src/services/version1/PerfMonHttpServiceV1';
+import { PerfMonCommandableHttpServiceV1 } from '../../../src/services/version1/PerfMonCommandableHttpServiceV1';
 
 let restConfig = ConfigParams.fromTuples(
     "connection.protocol", "http",
@@ -18,8 +18,8 @@ let restConfig = ConfigParams.fromTuples(
     "connection.port", 3000
 );
 
-suite('PerfMonHttpServiceV1', ()=> {
-    let service: PerfMonHttpServiceV1;
+suite('PerfMonCommandableHttpServiceV1', ()=> {
+    let service: PerfMonCommandableHttpServiceV1;
 
     let rest: any;
 
@@ -27,13 +27,13 @@ suite('PerfMonHttpServiceV1', ()=> {
         let persistence = new PerfMonMemoryPersistence();
         let controller = new PerfMonController();
 
-        service = new PerfMonHttpServiceV1();
+        service = new PerfMonCommandableHttpServiceV1();
         service.configure(restConfig);
 
         let references: References = References.fromTuples(
             new Descriptor('service-perfmon', 'persistence', 'memory', 'default', '1.0'), persistence,
             new Descriptor('service-perfmon', 'controller', 'default', 'default', '1.0'), controller,
-            new Descriptor('service-perfmon', 'service', 'http', 'default', '1.0'), service
+            new Descriptor('service-perfmon', 'service', 'commandable-http', 'default', '1.0'), service
         );
         controller.setReferences(references);
         service.setReferences(references);

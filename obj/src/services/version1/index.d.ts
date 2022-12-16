@@ -1,1 +1,1 @@
-export { PerfMonHttpServiceV1 } from './PerfMonHttpServiceV1';
+export { PerfMonCommandableHttpServiceV1 as PerfMonHttpServiceV1 } from './PerfMonCommandableHttpServiceV1';
