@@ -92,7 +92,7 @@ Example of microservice configuration
 
 - descriptor: "service-perfmon:controller:default:default:1.0"
 
-- descriptor: "service-perfmon:service:http:default:1.0"
+- descriptor: "service-perfmon:service:commandable-http:default:1.0"
   connection:
     protocol: "http"
     host: "0.0.0.0"
